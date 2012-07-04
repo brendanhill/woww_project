@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <script src="libs/jquery.js"></script>
+	<script src="libs/ember.0-9-8-1.js"></script>
+
+	<script src="app/testdata.js"></script>
+	<script src="app/app.js"></script>
+</head>
+
+<body>
+
+<div id='woww_app'></div>
+
+
+<script type="text/x-handlebars">
+	{{#view WOWW.MainControllerView}}
+		{{#each WOWW.MainController}}
+			{{#view WOWW.ExpenseView contentBinding="this"}}
+				{{content.eid}}
+				{{content.amount}}
+				{{content.owner}}
+			{{/view}}
+		{{/each}}
+	{{/view}}
+</script>
+
+
+</body>
+</html>
