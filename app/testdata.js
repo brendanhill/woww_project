@@ -1,10 +1,31 @@
 // app/testdata.js
 
-var me = {uid: 1001};
-var user1 = {uid: 0001};
-var user2 = {uid: 0002};
+var TESTDATA = {}
+var me = {uid: 1001, username: 'bhill', email: 'bhill@woww.com'};
+var user1 = {uid: 0001, username: 'someone', email: 'fake@email.com'};
+var user2 = {uid: 0002, username: 'nobody', email: 'noone@nowhere.com'};
 
-var sample_users = [me, user1, user2];
+TESTDATA.sample_users = [me, user1, user2];
+
+TESTDATA.validateUser = function(username){
+  var i;
+  for(i=0; i<TESTDATA.sample_users.length; i++){
+    if(TESTDATA.sample_users[i].username === username){
+      return TESTDATA.sample_users[i].uid;
+    }else{
+      return false;
+    }
+  }
+}
+
+TESTDATA.getUserProfile = function(uid){
+  var i;
+  for(i=0; i<TESTDATA.sample_users.length; i++){
+    if(TESTDATA.sample_users[i].uid === uid){
+      return TESTDATA.sample_users[i];
+    }
+  }
+}
 
 var sample_expenses = [];
 sample_expenses[0] = {eid: 001, title: 'Dinner', amount: 25.00, owner: 1001, users: [user1]};

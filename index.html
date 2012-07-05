@@ -16,13 +16,31 @@
 <script type="text/x-handlebars">
 	{{#view WOWW.MainControllerView}}
 		{{#each WOWW.MainController}}
+		
 			{{#view WOWW.ExpenseView contentBinding="this"}}
-				{{content.eid}}
-				{{content.amount}}
-				{{content.owner}}
+				{{content.title}}
+				{{amount_display}}
 			{{/view}}
+			
 		{{/each}}
 	{{/view}}
+</script>
+
+
+
+<script type="text/x-handlebars">
+  {{view WOWW.MainApplicationView}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="main_application_template">
+  WOWW!
+  <hr/>
+  {{view WOWW.LoggedInUserView}}
+  <div id="user_info">{{view WOWW.UserProfileView}}</div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="user_profile_template">
+Logged in as: {{content.username}}
 </script>
 
 
