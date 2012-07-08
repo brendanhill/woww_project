@@ -27,7 +27,52 @@ TESTDATA.getUserProfile = function(uid){
   }
 }
 
-var sample_expenses = [];
-sample_expenses[0] = {eid: 001, title: 'Dinner', amount: 25.00, owner: 1001, users: [user1]};
-sample_expenses[1] = {eid: 002, title: 'Gas', amount: 10.00, owner: 1001, users: [user1, user2]};
-sample_expenses[2] = {eid: 003, title: 'Mattress', amount: 130.00, owner: 1001, users: []};
+TESTDATA.sample_expenses = [];
+TESTDATA.sample_expenses[0] = {eid: 001, title: 'Dinner', amount: 25.00, owner: 1001, users: [1001, 0001]};
+TESTDATA.sample_expenses[1] = {eid: 002, title: 'Gas', amount: 10.00, owner: 1001, users: [1001, 0001, 0002]};
+TESTDATA.sample_expenses[2] = {eid: 003, title: 'Mattress', amount: 130.00, owner: 1001, users: [0001]};
+
+
+TESTDATA.contributions = [];
+TESTDATA.contributions[0] = {eid: 001, owner: 1001, amount: 7.00, date: new Date()};
+
+
+TESTDATA.getUserExpenses = function(uid){
+  var i = 0,
+      j = 0,
+      ret = [];
+
+  for (i; i < TESTDATA.sample_expenses.length; i += 1) {
+    for (j; j < TESTDATA.sample_expenses[i].users.length; j += 1) {
+      if (TESTDATA.sample_expenses[i].users[j] === uid) {
+        ret[i] = TESTDATA.sample_expenses[i];
+        break;
+      }
+    }
+  }
+  return ret;
+}
+
+TESTDATA.getSharedUsersByEid = function (eid) {
+  var i = 0
+      ret = [];
+
+  for (i; i < TESTDATA.sample_expenses.length; i += 1) {
+    if (TESTDATA.sample_expenses[i].eid === eid) {
+      ret = TESTDATA.sample_expenses[i].users;
+    }
+  }
+  return ret
+}
+
+TESTDATA.getContributionsByEid = function (eid) {
+  var i = 0
+      ret = [];
+
+  for (i; i < TESTDATA.contributions.length; i += 1) {
+    if (TESTDATA.contributions[i].eid === eid) {
+      ret[i] = TESTDATA.contributions[i];
+    }
+  }
+  return ret
+}

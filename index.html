@@ -14,21 +14,6 @@
 
 
 <script type="text/x-handlebars">
-	{{#view WOWW.MainControllerView}}
-		{{#each WOWW.MainController}}
-		
-			{{#view WOWW.ExpenseView contentBinding="this"}}
-				{{content.title}}
-				{{amount_display}}
-			{{/view}}
-			
-		{{/each}}
-	{{/view}}
-</script>
-
-
-
-<script type="text/x-handlebars">
   {{view WOWW.MainApplicationView}}
 </script>
 
@@ -37,12 +22,29 @@
   <hr/>
   {{view WOWW.LoggedInUserView}}
   <div id="user_info">{{view WOWW.UserProfileView}}</div>
+
+	{{view WOWW.AllExpensesView}}
+	{{#each WOWW.MainApplicationController.my_expenses}}
+		{{view WOWW.ExpenseView contentBinding="this"}}
+	{{/each}}
 </script>
 
 <script type="text/x-handlebars" data-template-name="user_profile_template">
-Logged in as: {{content.username}}
+Logged in as: {{content.username}}<hr />
 </script>
 
+
+<script type="text/x-handlebars" data-template-name="expenses_list_template">
+Your Expenses:
+</script>
+
+<script type="text/x-handlebars" data-template-name="expense_template">
+TITLE: {{content.title}} {{amount_display}}
+
+	{{#each content.contributions}}
+
+	{{/each}}
+</script>
 
 </body>
 </html>
